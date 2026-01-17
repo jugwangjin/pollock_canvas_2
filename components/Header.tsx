@@ -56,7 +56,7 @@ export const Header: React.FC<HeaderProps> = ({ language, onLanguageChange }) =>
           <Palette size={28} />
         </div>
         <h1 className="text-4xl md:text-5xl font-serif text-transparent bg-clip-text bg-gradient-to-r from-paint-200 via-paint-400 to-paint-600 font-bold tracking-tight">
-          Pollock Canvas
+          MorganSims Canvas
         </h1>
         <p className="text-neutral-500 text-sm md:text-base font-light tracking-wide max-w-md mx-auto leading-relaxed">
           {isKo ? (

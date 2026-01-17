@@ -180,8 +180,8 @@ export const DrippingCanvas: React.FC<DrippingCanvasProps> = ({
         if (p.wetness <= 0) {
             p.wetness = 0;
             // Final dry stamp
-            // Calculate final shrunk size (0.75x)
-            const finalSize = p.size * 0.75;
+            // Calculate final shrunk size: 0.33x of original resolution
+            const finalSize = p.size * 0.33;
             const radius = (finalSize * config.headScale) / 2;
             const centerX = p.x + p.size / 2;
             const centerY = p.y + p.size / 2;
@@ -241,9 +241,10 @@ export const DrippingCanvas: React.FC<DrippingCanvasProps> = ({
         const finalAlpha = Math.max(0.1, wetnessAlpha - whitenessAlphaPenalty);
 
         // Size shrinking logic:
-        // Wetness 1.0 -> Size 1.0x
-        // Wetness 0.0 -> Size 0.75x
-        const sizeMultiplier = 0.75 + (0.25 * p.wetness);
+        // Wetness 1.0 -> Size 0.50x
+        // Wetness 0.0 -> Size 0.33x
+        // Formula: 0.33 + (0.17 * wetness)
+        const sizeMultiplier = 0.33 + (0.17 * p.wetness);
         const currentSize = p.size * sizeMultiplier;
 
         ctx.fillStyle = `rgba(${Math.floor(p.r)},${Math.floor(p.g)},${Math.floor(p.b)}, ${finalAlpha})`;

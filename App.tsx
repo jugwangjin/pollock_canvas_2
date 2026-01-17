@@ -96,54 +96,8 @@ const App: React.FC = () => {
         />
         
         {appState === AppState.FINISHED && (
-            <div className="text-center mt-6 mb-12 animate-in fade-in duration-1000">
+            <div className="flex flex-col items-center gap-4 mt-6 mb-12 animate-in fade-in duration-1000">
                 <p className="text-paint-300 font-serif italic text-lg">
                   {isKo 
                     ? "\"예술은 끝나는 것이 아니라, 버려지는 것이다.\"" 
                     : "\"Art is never finished, only abandoned.\""}
-                </p>
-            </div>
-        )}
-
-        {/* Footer Section */}
-        <footer className="mt-24 pt-8 border-t border-neutral-800/50 flex flex-col items-center gap-6 text-neutral-500">
-            <div className="flex flex-wrap justify-center gap-6 md:gap-10">
-                <a 
-                    href="https://github.com/jugwangjin/pollock_canvas_2" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 hover:text-white transition-colors group"
-                    aria-label="GitHub Repository"
-                >
-                    <div className="p-2 bg-neutral-800 rounded-full group-hover:bg-neutral-700 transition-colors ring-1 ring-white/10 group-hover:ring-white/20">
-                        <Github size={20} />
-                    </div>
-                    <span className="text-sm font-medium">GitHub Repository</span>
-                </a>
-                
-                <a 
-                    href="https://instagram.com/panggun_ju" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 hover:text-white transition-colors group"
-                    aria-label="Instagram Profile"
-                >
-                    <div className="p-2 bg-neutral-800 rounded-full group-hover:bg-neutral-700 transition-colors ring-1 ring-white/10 group-hover:ring-white/20">
-                        <Instagram size={20} />
-                    </div>
-                    <span className="text-sm font-medium">@panggun_ju</span>
-                </a>
-            </div>
-            
-            <div className="text-center space-y-1">
-                <p className="text-xs text-neutral-600">
-                    Developed by <span className="text-neutral-400">Ju Gwangjin</span>
-                </p>
-            </div>
-        </footer>
-      </div>
-    </div>
-  );
-};
-
-export default App;

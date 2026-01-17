@@ -1,4 +1,4 @@
-# 🎨 Pollock Canvas (폴록 캔버스)
+# 🎨 MorganSims Canvas (모건 심스 캔버스)
 
 > "예술은 끝나는 것이 아니라, 버려지는 것이다."
 
@@ -8,7 +8,7 @@
 ![Vite](https://img.shields.io/badge/Vite-Fast-646CFF?logo=vite&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC?logo=tailwind-css&logoColor=white)
 
-**Pollock Canvas**는 잭슨 폴록(Jackson Pollock)의 드립 페인팅(Drip Painting) 기법에서 영감을 받은 인터랙티브 웹 애플리케이션입니다. 사용자가 업로드한 이미지를 픽셀 단위로 분석하여, 마치 캔버스 위에서 물감이 중력을 거스르거나 흘러내리는 듯한 **유화 스타일의 디지털 아트**로 변환합니다.
+**MorganSims Canvas**는 드립 페인팅(Drip Painting) 기법에서 영감을 받은 인터랙티브 웹 애플리케이션입니다. 사용자가 업로드한 이미지를 픽셀 단위로 분석하여, 마치 캔버스 위에서 물감이 중력을 거스르거나 흘러내리는 듯한 **유화 스타일의 디지털 아트**로 변환합니다.
 
 ---
 
@@ -55,8 +55,8 @@
 
 1. **저장소 클론**
    ```bash
-   git clone https://github.com/jugwangjin/pollock_canvas_2.git
-   cd pollock_canvas_2
+   git clone https://github.com/jugwangjin/morgansims_canvas.git
+   cd morgansims_canvas
    ```
 
 2. **의존성 설치**
@@ -75,7 +75,7 @@
 ## 📁 프로젝트 구조
 
 ```
-pollock-canvas/
+morgansims-canvas/
 ├── src/
 │   ├── components/
 │   │   ├── DrippingCanvas.tsx  # 핵심 물리 엔진 로직
