@@ -1,5 +1,5 @@
 import React from 'react';
-import { Palette, Droplets, Check } from 'lucide-react';
+import { Palette, Droplets, Check, ExternalLink } from 'lucide-react';
 import { Language } from '../types';
 
 interface HeaderProps {
@@ -58,19 +58,33 @@ export const Header: React.FC<HeaderProps> = ({ language, onLanguageChange }) =>
         <h1 className="text-4xl md:text-5xl font-serif text-transparent bg-clip-text bg-gradient-to-r from-paint-200 via-paint-400 to-paint-600 font-bold tracking-tight">
           MorganSims Canvas
         </h1>
-        <p className="text-neutral-500 text-sm md:text-base font-light tracking-wide max-w-md mx-auto leading-relaxed">
-          {isKo ? (
-            <>
-              당신의 사진을 흐르는 유화 명작으로 변환해보세요.<br/>
-              픽셀들이 캔버스를 채우고 천천히 녹아내리는 과정을 지켜보세요.
-            </>
-          ) : (
-            <>
-              Transform your photos into flowing oil painting masterpieces.<br/>
-              Watch pixels fill the canvas and slowly melt into art.
-            </>
-          )}
-        </p>
+        <div className="space-y-4">
+          <p className="text-neutral-500 text-sm md:text-base font-light tracking-wide max-w-md mx-auto leading-relaxed">
+            {isKo ? (
+              <>
+                당신의 사진을 흐르는 유화 명작으로 변환해보세요.<br/>
+                픽셀들이 캔버스를 채우고 천천히 녹아내리는 과정을 지켜보세요.
+              </>
+            ) : (
+              <>
+                Transform your photos into flowing oil painting masterpieces.<br/>
+                Watch pixels fill the canvas and slowly melt into art.
+              </>
+            )}
+          </p>
+          
+          <div className="pt-2">
+            <a 
+              href="https://www.morgan-sims.com/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs font-medium text-neutral-600 hover:text-paint-400 transition-colors border-b border-neutral-800 hover:border-paint-900 pb-0.5"
+            >
+              Inspired by Morgan Sims
+              <ExternalLink size={10} />
+            </a>
+          </div>
+        </div>
       </div>
     </header>
   );
