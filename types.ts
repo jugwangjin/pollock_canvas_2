@@ -1,3 +1,5 @@
+export type Language = 'ko' | 'en';
+
 export interface Particle {
   x: number;
   y: number;

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { Particle, SimulationConfig } from '../types';
+import { Particle, SimulationConfig, Language } from '../types';
 
 interface DrippingCanvasProps {
   imageSrc: string;
@@ -7,6 +7,7 @@ interface DrippingCanvasProps {
   onFinish?: () => void;
   resolution?: number; 
   config: SimulationConfig;
+  language: Language;
 }
 
 export const DrippingCanvas: React.FC<DrippingCanvasProps> = ({ 
@@ -14,7 +15,8 @@ export const DrippingCanvas: React.FC<DrippingCanvasProps> = ({
   isPlaying,
   onFinish,
   resolution = 5,
-  config
+  config,
+  language
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const sCanvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -309,7 +311,7 @@ export const DrippingCanvas: React.FC<DrippingCanvasProps> = ({
       />
       {!isLoaded && (
         <div className="absolute inset-0 flex items-center justify-center text-neutral-500">
-          캔버스 로딩 중...
+          {language === 'ko' ? "캔버스 로딩 중..." : "Loading Canvas..."}
         </div>
       )}
     </div>
