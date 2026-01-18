@@ -89,24 +89,14 @@ export const DrippingCanvas: React.FC<DrippingCanvasProps> = ({
             const v = max / 255; // Value (Brightness) 0~1
             const s = max === 0 ? 0 : (max - min) / max; // Saturation 0~1
             
-            // Whiteness Score:
-            // High Value + Low Saturation = White/Light Grey (Should not flow)
-            // Low Value = Dark (Flows)
-            // High Saturation = Color (Flows)
+            // Whiteness Score: 0.0 (Pure Color/Black) to 1.0 (Pure White)
             const whiteness = v * (1 - s);
 
             // Physics variation based on Whiteness
             const baseDecay = 0.002; 
-            
-            // "White" pixels dry significantly faster to prevent flowing
-            // We use power of 3 to target only very white/bright areas heavily
             const whitenessPenalty = Math.pow(whiteness, 3) * 0.15; 
-            
-            // Increased randomness for drying rate (0.001 -> 0.006)
-            // This creates more variation in trail lengths
-            const randomFactor = Math.random() * 0.01;
-            
-            // Final drying rate
+            // Increased randomness from 0.01 to 0.02 as requested
+            const randomFactor = Math.random() * 0.02;
             const dryingRate = baseDecay + whitenessPenalty + randomFactor;
 
             newParticles.push({
@@ -179,16 +169,14 @@ export const DrippingCanvas: React.FC<DrippingCanvasProps> = ({
         
         if (p.wetness <= 0) {
             p.wetness = 0;
-            // Final dry stamp
-            // Calculate final shrunk size: 0.33x of original resolution
+            // Final dry stamp shrunk size
             const finalSize = p.size * 0.33;
             const radius = (finalSize * config.headScale) / 2;
             const centerX = p.x + p.size / 2;
             const centerY = p.y + p.size / 2;
             
-            // Final dry stamp opacity
-            // Adjusted for thicker paint look: reduced whiteness penalty from 0.9 to 0.5
-            const finalAlpha = Math.max(0.1, 1.0 - (p.whiteness * 0.5));
+            // Apply Exponential Alpha Logic for dry stamp
+            const finalAlpha = Math.max(0.05, Math.pow(1.0 - p.whiteness, 0.33));
 
             ctx.fillStyle = `rgba(${p.r},${p.g},${p.b}, ${finalAlpha})`;
             ctx.beginPath();
@@ -233,17 +221,9 @@ export const DrippingCanvas: React.FC<DrippingCanvasProps> = ({
         }
 
         // --- DRAWING ---
-        // Alpha Logic:
-        // Strong opacity for colors, high transparency for whites.
-        const wetnessAlpha = 1.0; 
-        // Reduced penalty to make it more opaque overall (0.85 -> 0.5)
-        const whitenessAlphaPenalty = p.whiteness * 0.5; 
-        const finalAlpha = Math.max(0.1, wetnessAlpha - whitenessAlphaPenalty);
+        const finalAlpha = Math.max(0.05, Math.pow(1.0 - p.whiteness, 0.15));
 
         // Size shrinking logic:
-        // Wetness 1.0 -> Size 0.50x
-        // Wetness 0.0 -> Size 0.33x
-        // Formula: 0.33 + (0.17 * wetness)
         const sizeMultiplier = 0.33 + (0.17 * p.wetness);
         const currentSize = p.size * sizeMultiplier;
 
@@ -254,7 +234,6 @@ export const DrippingCanvas: React.FC<DrippingCanvasProps> = ({
         
         // 1. Draw Trail
         const trailWidth = currentSize * config.trailScale;
-        // Center the trail relative to the particle's center point (p.x + p.size/2)
         const trailOffset = (trailWidth - p.size) / 2;
         
         ctx.fillRect(
